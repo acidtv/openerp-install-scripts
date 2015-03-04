@@ -59,6 +59,12 @@ sudo apt-get install python-dateutil python-feedparser python-ldap python-libxsl
 	
 echo -e "\n---- Install python libraries ----"
 sudo pip install gdata
+
+echo -e "\n---- Install wkhtml and place on correct place for ODOO 8 ----"
+sudo wget http://downloads.sourceforge.net/project/wkhtmltopdf/archive/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb
+sudo dpkg -i wkhtmltox-0.12.1_linux-trusty-amd64.deb
+sudo cp /usr/local/bin/wkhtmltopdf /usr/bin
+sudo cp /usr/local/bin/wkhtmltoimage /usr/bin
 	
 echo -e "\n---- Create ODOO system user ----"
 sudo adduser --system --quiet --shell=/bin/bash --home=$OE_HOME --gecos 'ODOO' --group $OE_USER
@@ -180,5 +186,7 @@ sudo chown root: /etc/init.d/$OE_CONFIG
 echo -e "* Start ODOO on Startup"
 sudo update-rc.d $OE_CONFIG defaults
  
-echo "Done! The ODOO server can be started with /etc/init.d/$OE_CONFIG"
+sudo service $OE_CONFIG start
+echo "Done! The ODOO server can be started with: service $OE_CONFIG start"
+
 
