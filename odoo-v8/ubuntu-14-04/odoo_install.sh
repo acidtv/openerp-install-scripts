@@ -15,6 +15,9 @@
 # ./odoo-install 
 #
 ################################################################################
+
+# stop on errors
+set -e
  
 ##fixed parameters
 #openerp
@@ -77,7 +80,12 @@ sudo chown $OE_USER:$OE_USER /var/log/$OE_USER
 # Install ODOO
 #--------------------------------------------------
 echo -e "\n==== Installing ODOO Server ===="
-sudo git clone --branch $OE_VERSION https://github.com/onesteinbv/odoo.git $OE_HOME_EXT/
+
+OE_REPO=$1
+if [ "$1" == "" ]; then
+	OE_REPO="https://github.com/onesteinbv/odoo.git"
+fi
+sudo git clone --depth=10 --branch $OE_VERSION $OE_REPO $OE_HOME_EXT/
 
 echo -e "\n---- Create custom module directory ----"
 sudo su $OE_USER -c "mkdir $OE_HOME/custom"
