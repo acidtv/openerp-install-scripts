@@ -85,7 +85,7 @@ OE_REPO=$1
 if [ "$1" == "" ]; then
 	OE_REPO="https://github.com/onesteinbv/odoo.git"
 fi
-sudo git clone --depth=10 --branch $OE_VERSION $OE_REPO $OE_HOME_EXT/
+sudo git clone --single-branch --branch $OE_VERSION $OE_REPO $OE_HOME_EXT/
 
 echo -e "\n---- Create custom module directory ----"
 sudo su $OE_USER -c "mkdir -p $OE_HOME/custom"
