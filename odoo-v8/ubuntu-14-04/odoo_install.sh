@@ -73,7 +73,7 @@ echo -e "\n---- Create ODOO system user ----"
 sudo adduser --system --quiet --shell=/bin/bash --home=$OE_HOME --gecos 'ODOO' --group $OE_USER
 
 echo -e "\n---- Create Log directory ----"
-sudo mkdir /var/log/$OE_USER
+sudo mkdir -p /var/log/$OE_USER
 sudo chown $OE_USER:$OE_USER /var/log/$OE_USER
 
 #--------------------------------------------------
@@ -88,8 +88,8 @@ fi
 sudo git clone --depth=10 --branch $OE_VERSION $OE_REPO $OE_HOME_EXT/
 
 echo -e "\n---- Create custom module directory ----"
-sudo su $OE_USER -c "mkdir $OE_HOME/custom"
-sudo su $OE_USER -c "mkdir $OE_HOME/custom/addons"
+sudo su $OE_USER -c "mkdir -p $OE_HOME/custom"
+sudo su $OE_USER -c "mkdir -p $OE_HOME/custom/addons"
 
 echo -e "\n---- Setting permissions on home folder ----"
 sudo chown -R $OE_USER:$OE_USER $OE_HOME/*
