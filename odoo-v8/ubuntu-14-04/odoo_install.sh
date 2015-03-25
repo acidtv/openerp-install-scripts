@@ -92,7 +92,7 @@ if [ "$1" == "" ]; then
 	OE_REPO="https://github.com/onesteinbv/odoo.git"
 fi
 
-if [ ! -f odoo/ ]; then
+if [ ! -d "$OE_HOME_EXT" ]; then
 	sudo git clone --single-branch --branch $OE_VERSION $OE_REPO $OE_HOME_EXT/
 fi
 
