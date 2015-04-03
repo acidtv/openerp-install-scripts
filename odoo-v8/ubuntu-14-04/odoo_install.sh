@@ -9,10 +9,20 @@
 #-------------------------------------------------------------------------------
 # USAGE:
 #
-# odoo-install
+# odoo-install [repo] [branch]
 #
-# EXAMPLE:
+# PARAMS:
+#
+# repo: The git repo to get the odoo source from. This defaults to 
+# onesteinbv/odoo on github.
+# 
+# branch: The branch to check out: "8.0" for version 8.0, "7.0 (version 7), 
+# saas-4, saas-5 (opendays version) and "master" for trunk. Defaults to 8.0-os.
+#
+# EXAMPLES:
 # ./odoo-install 
+# ./odoo-install http://github.com/user/repo
+# ./odoo-install http://github.com/user/repo branch
 #
 ################################################################################
 
@@ -24,9 +34,6 @@ set -e
 OE_USER="odoo"
 OE_HOME="/opt/$OE_USER"
 OE_HOME_EXT="/opt/$OE_USER/$OE_USER-server"
-
-#Enter version for checkout "8.0" for version 8.0, "7.0 (version 7), saas-4, saas-5 (opendays version) and "master" for trunk
-OE_VERSION="8.0-os"
 
 #set the superadmin password
 OE_SUPERADMIN="superadminpassword"
@@ -87,9 +94,14 @@ sudo chown $OE_USER:$OE_USER /var/log/$OE_USER
 #--------------------------------------------------
 echo -e "\n==== Installing ODOO Server ===="
 
-OE_REPO=$1
+OE_REPO="$1"
 if [ "$1" == "" ]; then
 	OE_REPO="https://github.com/onesteinbv/odoo.git"
+fi
+
+OE_VERSION="$2"
+if [ "$2" == "" ]; then
+	OE_VERSION="8.0-os"
 fi
 
 if [ ! -d "$OE_HOME_EXT" ]; then
