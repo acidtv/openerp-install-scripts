@@ -104,6 +104,8 @@ if [ "$2" == "" ]; then
 	OE_VERSION="8.0-os"
 fi
 
+echo -e "\n Cloning $OE_REPO $OE_VERSION ..."
+
 if [ ! -d "$OE_HOME_EXT" ]; then
 	sudo git clone --single-branch --branch $OE_VERSION $OE_REPO $OE_HOME_EXT/
 fi
