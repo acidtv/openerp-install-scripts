@@ -9,9 +9,11 @@
 #-------------------------------------------------------------------------------
 # USAGE:
 #
-# odoo-install [repo] [branch]
+# odoo-install [logname] [repo] [branch]
 #
 # PARAMS:
+#
+# logname: Name to append to log filename.
 #
 # repo: The git repo to get the odoo source from. This defaults to 
 # onesteinbv/odoo on github.
@@ -21,8 +23,9 @@
 #
 # EXAMPLES:
 # ./odoo-install 
-# ./odoo-install http://github.com/user/repo
-# ./odoo-install http://github.com/user/repo branch
+# ./odoo-install dev
+# ./odoo-install dev http://github.com/user/repo
+# ./odoo-install dev http://github.com/user/repo branch
 #
 ################################################################################
 
@@ -94,13 +97,13 @@ sudo chown $OE_USER:$OE_USER /var/log/$OE_USER
 #--------------------------------------------------
 echo -e "\n==== Installing ODOO Server ===="
 
-OE_REPO="$1"
-if [ "$1" == "" ]; then
+OE_REPO="$2"
+if [ "$2" == "" ]; then
 	OE_REPO="https://github.com/onesteinbv/odoo.git"
 fi
 
-OE_VERSION="$2"
-if [ "$2" == "" ]; then
+OE_VERSION="$3"
+if [ "$3" == "" ]; then
 	OE_VERSION="8.0-os"
 fi
 
