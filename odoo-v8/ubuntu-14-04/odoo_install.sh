@@ -75,7 +75,7 @@ sudo su - postgres -c "createuser -s $OE_USER" 2> /dev/null || true
 # Install Dependencies
 #--------------------------------------------------
 echo -e "\n---- Install python libraries ----"
-sudo pip install gdata
+sudo pip install gdata ofxparse pygeocoder
 
 echo -e "\n---- Install wkhtml and place on correct place for ODOO 8 ----"
 if [ ! -f wkhtmltox-0.12.1_linux-trusty-amd64.deb ]; then
